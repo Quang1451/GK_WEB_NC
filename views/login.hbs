@@ -1,0 +1,32 @@
+<div class="login-page">
+
+    <div class="form">
+        <h1>Login</h1>
+        <form action="/login" method="POST" class="login-form">
+            <input type="text" name="username" placeholder="Username" />
+            <input type="password" name="password" placeholder="Password" />
+            <button>login</button>
+            <p class="message">Bạn chưa có tài khoản? <a href="#" id="btn-register-page">Create an account</a></p>
+        </form>
+
+        <form action="/register" method="POST" class="register-form">
+            <input type="text" name="name" placeholder="Username" />
+            <input type="text" name="email" placeholder="Email address" />
+            <input type="password" name="password" placeholder="Password" />
+            <input type="password" name="re_password" placeholder="Confirm password" />
+            <button>create</button>
+            <p class="message">Bạn đã có tài khoản? <a href="#" id="btn-login-page">Sign In</a></p>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        {{#if falseRegister}}
+            if ({{falseRegister.status}})
+                $('#btn-register-page').trigger('click');
+        {{/if}}
+    });
+</script>
+
+<script src="js/Login.js"></script>

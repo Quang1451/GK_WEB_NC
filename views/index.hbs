@@ -1,0 +1,50 @@
+<div class="container p-0">
+    <div class="chat">
+        <div class="chat-header d-flex">
+            <h1 class="text-white"><i class="fas fa-smile"></i> ChatCord</h1>
+            <a href="#" class="ml-auto btn btn-danger my-auto">Leave Room</a>
+        </div>
+        <div class="chat-main d-flex">
+            <div class="chat-sidebar col-4">
+                <h3><i class="fas fa-comments"></i> Room Name:</h3>
+                <h2 id="room-name">JavaScript</h2>
+                <h3><i class="fas fa-users"></i> Users</h3>
+                <ul id="users">
+                    <li>Brad</li>
+                    <li>John</li>
+                    <li>Mary</li>
+                    <li>Paul</li>
+                    <li>Mike</li>
+                </ul>
+            </div>
+            <div class="p-2 chat-messages col-8">
+                <div class="message rounded-lg border px-2 bg-secondary">
+                    <p class="meta">Brad <span>9:12pm</span></p>
+                    <p class="text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
+                        repudiandae.
+                    </p>
+                </div>
+                <div class="message">
+                    <p class="meta">Mary <span>9:15pm</span></p>
+                    <p class="text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
+                        repudiandae.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="chat-form-container">
+            <form id="chat-form">
+                <div class="form-group d-flex p-2 m-0">
+                    <div class="col-10"><input class="form-control" id="msg" type="text" placeholder="Enter Message"
+                            requiredautocomplete="off"></div>
+                    <button class="btn btn-secondary form-label"><i class="fas fa-paper-plane"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/main.js"></script>
