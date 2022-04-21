@@ -1,50 +1,169 @@
-<div class="container p-0">
-    <div class="chat">
-        <div class="chat-header d-flex">
-            <h1 class="text-white"><i class="fas fa-smile"></i> ChatCord</h1>
-            <a href="#" class="ml-auto btn btn-danger my-auto">Leave Room</a>
-        </div>
-        <div class="chat-main d-flex">
-            <div class="chat-sidebar col-4">
-                <h3><i class="fas fa-comments"></i> Room Name:</h3>
-                <h2 id="room-name">JavaScript</h2>
-                <h3><i class="fas fa-users"></i> Users</h3>
-                <ul id="users">
-                    <li>Brad</li>
-                    <li>John</li>
-                    <li>Mary</li>
-                    <li>Paul</li>
-                    <li>Mike</li>
-                </ul>
-            </div>
-            <div class="p-2 chat-messages col-8">
-                <div class="message rounded-lg border px-2 bg-secondary">
-                    <p class="meta">Brad <span>9:12pm</span></p>
-                    <p class="text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
-                        repudiandae.
-                    </p>
-                </div>
-                <div class="message">
-                    <p class="meta">Mary <span>9:15pm</span></p>
-                    <p class="text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
-                        repudiandae.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="chat-form-container">
-            <form id="chat-form">
-                <div class="form-group d-flex p-2 m-0">
-                    <div class="col-10"><input class="form-control" id="msg" type="text" placeholder="Enter Message"
-                            requiredautocomplete="off"></div>
-                    <button class="btn btn-secondary form-label"><i class="fas fa-paper-plane"></i> Send</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+{{!-- <div class="wrapper-mobile">
+    <div class="mobile"><img src="./img/lone-logo.svg">Not available on Tablet or Mobile devices.</div>
+</div> --}}
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="js/main.js"></script>
+<div class="wrapper">
+    <header>
+        <div class="container">
+            <h1 class="text-white"><i class="fas fa-smile"></i> ChatCord</h1>
+            <div class="middle">
+                <h3>Theresa Hudson</h3>
+                <p>Messenger</p>
+            </div>
+            <div class="right">
+                <div class="username">
+                    <div class="settings"><img src="./img/settings.svg"></div>Patrcia Fields
+                </div>
+                <div class="avatar"><img src="./img/avatar.png"></div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="col-left">
+            <div class="col-content">
+                <div class="messages">
+                    {{#each friends}}
+                    <li>
+                        <div class="avatar">
+                            <div class="avatar-image">
+                                <div class="status online"></div><img src="./img/avatar-2.png">
+                            </div>
+                        </div>
+                        <h3>{{name}}</h3>
+                        <p>{{id}}</p>
+                    </li>
+                    {{/each}}
+                    {{!-- <li>
+                        <div class="avatar">
+                            <div class="avatar-image">
+                                <div class="status online"></div><img src="./img/avatar-2.png">
+                            </div>
+                        </div>
+                        <h3>Nancy Scott</h3>
+                    </li>
+                    <li>
+                        <div class="avatar">
+                            <div class="avatar-image">
+                                <div class="status offline"></div><img src="./img/avatar-3.png">
+                            </div>
+                        </div>
+                        <h3>Cynthia Castro</h3>
+                    </li>
+                    <li>
+                        <div class="avatar">
+                            <div class="avatar-image">
+                                <div class="status online"></div><img src="./img/avatar-4.png">
+                            </div>
+                        </div>
+                        <h3>Philip Nelson</h3>
+                    </li>
+                    <li>
+                        <div class="avatar">
+                            <div class="avatar-image">
+                                <div class="status online"></div><img src="./img/avatar-5.png">
+                            </div>
+                        </div>
+                        <h3>Theresa Hudson</h3>
+                    </li>
+                    <li>
+                        <div class="avatar">
+                            <div class="avatar-image">
+                                <div class="status offline"></div><img src="./img/avatar-4.png">
+                            </div>
+                        </div>
+                        <h3>Rebecca Jackson</h3>
+                    </li>
+                    <li>
+                        <div class="avatar">
+                            <div class="avatar-image">
+                                <div class="status online"></div><img src="./img/avatar-2.png">
+                            </div>
+                        </div>
+                        <h3>Ethan Gitson</h3>
+                    </li>
+                    <li>
+                        <div class="avatar">
+                            <div class="avatar-image">
+                                <div class="status offline"></div><img src="./img/avatar.png">
+                            </div>
+                        </div>
+                        <h3>Betty Scott</h3>
+                    </li> --}}
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="col-content">
+                <section class="message">
+                    <div class="grid-message">
+                        <div class="col-message-received">
+                            <p class="name-received">Theresa Hudson</p>
+                            <div class="message-received">
+                                <p>Do you play EVE Online?</p>
+                            </div>
+                        </div>
+                        <div class="col-message-sent">
+                            <p class="name-sent">Me</p>
+                            <div class="message-sent">
+                                <p>Not anymore.</p>
+                            </div>
+                        </div>
+                        <div class="col-message-received">
+                            <p class="name-received">Theresa Hudson</p>
+                            <div class="message-received">
+                                <p>But, can you?</p>
+                            </div>
+                        </div>
+                        <div class="col-message-sent">
+                            <p class="name-sent">Me</p>
+                            <div class="message-sent">
+                                <p>I guess if I had some practice I could again. It's been years.</p>
+                            </div>
+                        </div>
+                        <div class="col-message-received">
+                            <p class="name-received">Theresa Hudson</p>
+                            <div class="message-received">
+                                <p>Dat titan though...</p>
+                            </div>
+                        </div>
+                        <div class="col-message-sent">
+                            <p class="name-sent">Me</p>
+                            <div class="message-sent">
+                                <p>Trombone, guitar, titan?</p>
+                            </div>
+                        </div>
+                        <div class="col-message-received">
+                            <p class="name-received">Theresa Hudson</p>
+                            <div class="message-received">
+                                <p>Niiiiice.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-foot">
+                <div class="compose">
+                    <input placeholder="Type a message">
+                    <div class="compose-dock">
+                        <div class="dock"><img src="./img/picture.svg"><img src="./img/smile.svg"><img
+                                src="./img/send.svg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="col-content">
+                <div class="user-panel">
+                    <div class="avatar">
+                        {{#if account}}
+                        <div class="avatar-image">
+                            <div class="status online"></div><img src="/img/{{account.avatar}}">
+                        </div>
+                        <h3>{{account.name}}</h3>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
