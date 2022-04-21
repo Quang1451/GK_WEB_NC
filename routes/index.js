@@ -53,11 +53,12 @@ router.post('/register', function(req, res) {
     /* Tạo tài khoản mới với avatar ngẫu nhiên */
     if(account == null) {
       var imgs = ['avatar.png','avatar-2.png','avatar-3.png','avatar-4.png','avatar-5.png']
+      var avatar = imgs[Math.floor(Math.random()*imgs.length)]
       new Account({
         name: name,
         email: email,
         password: password,
-        avatar: imgs[Math.floor(Math.random()*imgs.length)]
+        avatar: avatar
       }).save()
 
       /* Tạo các phòng chat private giữa account mới và các account cũ */
@@ -68,7 +69,8 @@ router.post('/register', function(req, res) {
           new Room({
             name: null,
             kind: 'private',
-            members: [email,account.email]
+            members: [JSON.stringify({name: name, email: email, avatar: avatar}),
+              JSON.stringify({name: account.name, email: account.email, avatar: account.avatar})]
           }).save()
         })
       })

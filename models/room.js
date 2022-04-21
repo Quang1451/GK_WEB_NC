@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const account = require('./account')
 
 const roomSchema = mongoose.Schema({
     name: String,

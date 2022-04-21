@@ -12,9 +12,9 @@
             </div>
             <div class="right">
                 <div class="username">
-                    <div class="settings"><img src="./img/settings.svg"></div>Patrcia Fields
+                    <div class="settings"><img src="/img/settings.svg"></div>Patrcia Fields
                 </div>
-                <div class="avatar"><img src="./img/avatar.png"></div>
+                <div class="avatar"><img src="/img/avatar.png"></div>
             </div>
         </div>
     </header>
@@ -24,13 +24,15 @@
                 <div class="messages">
                     {{#each friends}}
                     <li>
-                        <div class="avatar">
-                            <div class="avatar-image">
-                                <div class="status online"></div><img src="./img/avatar-2.png">
+                        <div onclick="location.href = '/chat/r/{{id}}';">
+                            <div class="avatar">
+                                <div class="avatar-image">
+                                    <div class="status online"></div><img src="/img/{{account.avatar}}">
+                                </div>
                             </div>
+                            <h3>{{account.name}}</h3>
+                            <p>{{id}}</p>
                         </div>
-                        <h3>{{name}}</h3>
-                        <p>{{id}}</p>
                     </li>
                     {{/each}}
                     {{!-- <li>
@@ -145,8 +147,8 @@
                 <div class="compose">
                     <input placeholder="Type a message">
                     <div class="compose-dock">
-                        <div class="dock"><img src="./img/picture.svg"><img src="./img/smile.svg"><img
-                                src="./img/send.svg"></div>
+                        <div class="dock"><img src="/img/picture.svg"><img src="/img/smile.svg"><img
+                                src="/img/send.svg"></div>
                     </div>
                 </div>
             </div>
