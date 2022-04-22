@@ -8,7 +8,9 @@ var app = require('../app');
 var debug = require('debug')('websocket:server');
 var socketio = require('socket.io')
 var http = require('http');
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
+const { isTypedArray } = require('util/types');
+
 /**
  * MongoDB models.
  */
@@ -33,9 +35,31 @@ var server = http.createServer(app);
 
 var io = socketio(server)
 
+let users = {}
+
 io.on('connection', socket => {
   console.log('Welcome WS')
-  socket.emit('message','Hello')
+  var email
+
+  io.emit('login',users)
+
+  socket.on('online', (data) => {
+    email = data.email
+    const user = {
+      id: socket.id,
+      name:  data.username,
+    }
+    if(!users[email])
+      users[email] = user  
+    socket.broadcast.emit('login', users)
+  })
+  
+
+
+  socket.on('disconnect', () => {
+    delete users[email]
+    socket.broadcast.emit('login', users)
+  })
 })
 /**
  * Listen on provided port, on all network interfaces.
