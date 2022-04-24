@@ -9,16 +9,16 @@ var debug = require('debug')('websocket:server');
 var socketio = require('socket.io')
 var http = require('http');
 var mongoose = require('mongoose');
-const { isTypedArray } = require('util/types');
+var chat = require('../lib/Chat.js')
 
 /**
- * MongoDB models.
+ * Kết nối MongoDB.
  */
 mongoose.connect('mongodb://127.0.0.1:27017/GK', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log("Kết nối MongoDB thành công!"))
-.catch((e) => console.log(e))
+  .catch((e) => console.log(e))
 
 /**
  * Get port from environment and store in Express.
@@ -33,29 +33,41 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+/* Socket */
 var io = socketio(server)
 
 let users = {}
 
 io.on('connection', socket => {
-  console.log('Welcome WS')
   var email
-
-  io.emit('login',users)
-
+  var currentRoom
+  /* Lưu thông tin tài khoản mới online */
   socket.on('online', (data) => {
+    /* Trả về danh sách các tài khoản hiện đăng online */
+    io.emit('login', users)
+
     email = data.email
-    const user = {
-      id: socket.id,
-      name:  data.username,
-    }
-    if(!users[email])
-      users[email] = user  
+    const user = data.username
+    if (!users[email])
+      users[email] = user
+
+    /* Trả về danh sách các tài khoản cho tất cả người dùng khác */
     socket.broadcast.emit('login', users)
   })
-  
 
+  /* Tham gia vào phòng chat */
+  socket.on('room', (room) => {
+    currentRoom = room
+    socket.join(room)
+  })
 
+  /* Nhận message từ người gửi, lưu vào mongoDB rồi hiển thị cho người nhận (nếu đang online) */
+  socket.on('chat', (data) => {
+    chat.saveMessage(currentRoom,data.msg, data.user)
+    io.in(currentRoom).emit('receiveMessage', {msg: data.msg, sender: data.user})
+  })
+
+  /* Trả về danh sách online mới cho các người dùng khác khi có người dùng disconnect */
   socket.on('disconnect', () => {
     delete users[email]
     socket.broadcast.emit('login', users)

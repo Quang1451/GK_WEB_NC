@@ -8,15 +8,9 @@ router.get('/',async function(req, res) {
     return res.redirect(303,'/login')
 
   var accountInfo = req.session.account
-  var css = ['/css/chat.css','/css/normalize.css']
-  var listRooms = await getRoom.listRoom(accountInfo.email)
+  var roomChat = await getRoom.getRoomByEmail(accountInfo.email)
 
-  var content = { title: 'Chat',
-   cssFile : css,
-   account : accountInfo,
-   friends: listRooms
-   }
-  res.render('index', content);
+  res.redirect('/chat/r/'+roomChat);
 });
 
 /* GET chat room với id room*/
@@ -27,7 +21,7 @@ router.get('/r/:id',async function(req, res) {
   var accountInfo = req.session.account
   var css = ['/css/chat.css','/css/normalize.css']
   var listRooms = await getRoom.listRoom(accountInfo.email)
-  var roomChat = await getRoom.getRoom(req.params.id,accountInfo.email)
+  var roomChat = await getRoom.getRoomById(req.params.id,accountInfo.email)
 
   var content = { title: 'Chat',
    cssFile : css,

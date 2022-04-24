@@ -97,8 +97,8 @@
         <div class="col">
             <div class="col-content">
                 <section class="message">
-                    <div class="grid-message">
-                        <div class="col-message-received">
+                    <div id="chatBoard" class="grid-message">
+                        {{!-- <div class="col-message-received">
                             <p class="name-received">Theresa Hudson</p>
                             <div class="message-received">
                                 <p>Do you play EVE Online?</p>
@@ -139,13 +139,13 @@
                             <div class="message-received">
                                 <p>Niiiiice.</p>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </section>
             </div>
             <div class="col-foot">
                 <div class="compose">
-                    <input placeholder="Type a message">
+                    <input id="chatMessage" placeholder="Type a message">
                     <div class="compose-dock">
                         <div class="dock"><img src="/img/picture.svg"><img src="/img/smile.svg"><img
                                 src="/img/send.svg"></div>
