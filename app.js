@@ -16,7 +16,19 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.engine('hbs', exphbs.engine({
   defaultLayout: 'layout.hbs',
-  helpers: {}
+  helpers: {
+    senderOrReceiver: function(email, emailAccount) {
+      if(email == emailAccount)
+        return 'sent'
+      return 'received'
+    },
+
+    nameOfSender : function(email, emailAccount, name) {
+      if(email == emailAccount)
+        return 'me'
+      return name
+    }
+  }
 }))
 app.use(logger('dev'));
 app.use(express.json());

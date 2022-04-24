@@ -2,6 +2,8 @@ var express = require('express');
 const async = require('hbs/lib/async');
 var router = express.Router();
 var getRoom = require('../lib/Room.js')
+var getChat = require('../lib/Chat.js')
+
 /* GET chat */
 router.get('/',async function(req, res) {
   if(!req.session.account)
@@ -20,14 +22,20 @@ router.get('/r/:id',async function(req, res) {
 
   var accountInfo = req.session.account
   var css = ['/css/chat.css','/css/normalize.css']
-  var listRooms = await getRoom.listRoom(accountInfo.email)
-  var roomChat = await getRoom.getRoomById(req.params.id,accountInfo.email)
 
+  /* Lấy danh sách các phòng chat */
+  var listRooms = await getRoom.listRoom(accountInfo.email)
+  /* Lấy thông tin phòng chat */
+  var roomChat = await getRoom.getRoomById(req.params.id, accountInfo.email)
+  /* Lấy lịch sử chat */
+  var chatHistory = await getChat.getChatHistory(req.params.id)
+  
   var content = { title: 'Chat',
    cssFile : css,
    account : accountInfo,
    friends: listRooms,
-   room: roomChat.name.name
+   room: roomChat.name.name,
+   chatHistory : chatHistory
    }
   res.render('index', content);
 });

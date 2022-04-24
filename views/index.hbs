@@ -27,11 +27,12 @@
                         <div onclick="location.href = '/chat/r/{{id}}';">
                             <div class="avatar">
                                 <div class="avatar-image">
-                                    <div id="{{account.email}}" class="status offline"></div><img src="/img/{{account.avatar}}">
+                                    <div id="{{account.email}}" class="status offline"></div><img
+                                        src="/img/{{account.avatar}}">
                                 </div>
                             </div>
                             <h3>{{account.name}}</h3>
-                            <p>{{id}}</p>
+                            <p>{{account.email}}</p>
                         </div>
                     </li>
                     {{/each}}
@@ -98,6 +99,14 @@
             <div class="col-content">
                 <section class="message">
                     <div id="chatBoard" class="grid-message">
+                        {{#each chatHistory}}
+                            <div class="col-message-{{senderOrReceiver sender.email ../account.email}}">
+                                <p class="name-{{senderOrReceiver sender.email ../account.email}}">{{nameOfSender sender.email ../account.email sender.username}}</p>
+                                <div class="message-{{senderOrReceiver sender.email ../account.email}}">
+                                    <p>{{msg}}</p>
+                                </div>
+                            </div>
+                        {{/each}}
                         {{!-- <div class="col-message-received">
                             <p class="name-received">Theresa Hudson</p>
                             <div class="message-received">
