@@ -5,6 +5,9 @@ $(document).ready(() => {
         username: $('#user').html(),
         email: $('#user').data('email')
     }
+    
+    /* Tự động đến đoạn chat mới nhất */
+    $('.message').scrollTop($('.message').prop("scrollHeight"));
 
     /* Tham gia server */
     socket.emit('online', account)
@@ -40,8 +43,8 @@ $(document).ready(() => {
         }
     })
 
+    /* Nhận chat và tự động cuộn xuống vị trí đoạn chat mới nhất */
     socket.on('receiveMessage', data => {
-        console.log(data)
         if (data.sender.email == account.email) {
             $('#chatBoard').append(`
                         <div class="col-message-sent">
@@ -59,7 +62,7 @@ $(document).ready(() => {
                 </div>
             </div>`)
         }
-
+        $('.message').scrollTop($('.message').prop("scrollHeight"));
     })
 
     var modal = document.getElementById("myModal");
