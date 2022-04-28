@@ -34,7 +34,8 @@ h6 {
 h1 {
     margin-left: 10px;
     margin-top: 20px;
-    color: white
+    color: white;
+    float: left
 }
 
 fieldset,

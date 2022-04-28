@@ -10,13 +10,9 @@
                 <h3>{{room}}</h3>
                 <p>Messenger</p>
             </div>
-            <div class="right">
-                <div class="username">
-                    <div class="settings"><img src="/img/settings.svg"></div>Patrcia Fields
-                </div>
-                <div class="avatar"><img src="/img/avatar.png"></div>
-            </div>
+            <input class="sign-out" id="signout" type="button" value="Sign out"></input>
         </div>
+        
     </header>
     <main>
         <div class="col-left">
@@ -27,12 +23,11 @@
                         <div onclick="location.href = '/chat/r/{{id}}';">
                             <div class="avatar">
                                 <div class="avatar-image">
-                                    <div id="{{account.email}}" class="status offline"></div><img
-                                        src="/img/{{account.avatar}}">
+                                    <div id="{{account.email}}" class="status offline"></div><img src="/img/{{account.avatar}}">
                                 </div>
                             </div>
                             <h3>{{account.name}}</h3>
-                            <p>{{account.email}}</p>
+                            <p>{{id}}</p>
                         </div>
                     </li>
                     {{/each}}
@@ -99,14 +94,6 @@
             <div class="col-content">
                 <section class="message">
                     <div id="chatBoard" class="grid-message">
-                        {{#each chatHistory}}
-                            <div class="col-message-{{senderOrReceiver sender.email ../account.email}}">
-                                <p class="name-{{senderOrReceiver sender.email ../account.email}}">{{nameOfSender sender.email ../account.email sender.username}}</p>
-                                <div class="message-{{senderOrReceiver sender.email ../account.email}}">
-                                    <p>{{msg}}</p>
-                                </div>
-                            </div>
-                        {{/each}}
                         {{!-- <div class="col-message-received">
                             <p class="name-received">Theresa Hudson</p>
                             <div class="message-received">
@@ -154,9 +141,9 @@
             </div>
             <div class="col-foot">
                 <div class="compose">
-                    <input id="chatMessage" placeholder="Type a message">
+                    <p><textarea class="textarea" id="chatMessage"></textarea></p>
                     <div class="compose-dock">
-                        <div class="dock"><img src="/img/picture.svg"><img src="/img/smile.svg"><img
+                        <div class="dock"><img src="/img/picture.svg"><img src="/img/icon.svg"><img
                                 src="/img/send.svg"></div>
                     </div>
                 </div>
@@ -172,10 +159,30 @@
                         </div>
                         <h3 id="user" data-email="{{account.email}}">{{account.name}}</h3>
                         {{/if}}
+                        <button id="myBtn">Create room</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h2>CREATE ROOM</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="container-1">
+                        <input class="name-room" type="text" id="name-room" placeholder="Enter room name..." />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input class="create-room" id="createroom" type="button" value="Create"></input>
+                </div>
+            </div>
+        </div>
+
+
     </main>
 </div>
 
