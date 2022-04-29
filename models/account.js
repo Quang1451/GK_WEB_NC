@@ -4,7 +4,8 @@ const accountSchema = mongoose.Schema({
     name: String,
     email: String,
     password: String,
-    avatar: String
+    avatar: String,
+    role: String
 })
 
 const account = mongoose.model('Account', accountSchema)

@@ -238,6 +238,18 @@ header .left img {
     margin-bottom: 7px
 }
 
+.col-left .child-list1 {
+    overflow-y: auto;
+    height: auto;
+    max-height: 430px;
+    margin-bottom: 20px;
+}
+
+.col-left .child-list2 {
+    overflow-y: auto;
+    height: 130px;
+}
+
 .col-left .messages li {
     padding-top: 15px;
     width: 100%;
@@ -245,8 +257,18 @@ header .left img {
     overflow: hidden;
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 15px
+    padding-bottom: 15px;
 }
+
+.col-left .messages li div {
+    display: flex;
+    height: 100%;
+}
+
+.col-left .messages li div h3 {
+    height: 100%;
+    margin: auto 0;
+ }
 
 .col-left .messages li .avatar {
     position: relative
@@ -284,21 +306,9 @@ header .left img {
     padding-bottom: 20px
 }
 
-.col-left .messages li p {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis
-}
-
 .col-left .messages h3 {
-    margin-bottom: 7px
-}
-
-.col-left .messages p {
-    margin-bottom: 0px;
-    color: #9197a5
+    margin: 15px 0px;
+    padding: 0 15px;
 }
 
 main {
@@ -537,7 +547,7 @@ main {
 
 .textarea {
     display: block;
-    width: 83%;
+    width: 86%;
     overflow: hidden;
     resize: none;
     min-height: 20px;
@@ -549,8 +559,7 @@ main {
 .compose .compose-dock .dock {
     position: absolute;
     right: 25px;
-    top: 20px;
-    margin-top: 10px;
+    top: 15px;
 }
 
 .compose .compose-dock img {

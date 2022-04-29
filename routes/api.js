@@ -14,6 +14,7 @@ router.post('/createRoom', (req,res) => {
     })
     newRoom.save()
     var roomInfo = {id: newRoom._id, name: name, avatar: newRoom.avatar}
+    
     var io = req.app.get('socketio')
     io.emit('newRoom', roomInfo)
     res.json({code: 0, message: 'Tạo phòng thành công'})

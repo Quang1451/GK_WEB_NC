@@ -23,19 +23,29 @@ router.get('/r/:id',async function(req, res) {
   var accountInfo = req.session.account
   var css = ['/css/chat.css','/css/normalize.css']
 
-  /* Lấy danh sách các phòng chat */
-  var listRooms = await getRoom.listPrivateRoom(accountInfo.email)
+  /* Lấy danh sách các phòng private chat */
+  var listPrivateRooms = await getRoom.listPrivateRoom(accountInfo.email)
+  /* Lấy danh sách các phòng public chat */
+  var listPublicRooms = await getRoom.listPublicRoom()
   /* Lấy thông tin phòng chat */
   var roomChat = await getRoom.getRoomById(req.params.id, accountInfo.email)
+  console.log(roomChat)
   /* Lấy lịch sử chat */
   var chatHistory = await getChat.getChatHistory(req.params.id)
   
+  /* Kiểm tra người dùng có phải là admin hay không để hiện thị nút tạo phòng */
+  var createRoom = false
+  if(accountInfo.role === 'admin'){
+    createRoom = true
+  }
   var content = { title: 'Chat',
    cssFile : css,
    account : accountInfo,
-   friends: listRooms,
-   room: roomChat.name.name,
-   chatHistory : chatHistory
+   friends: listPrivateRooms,
+   listPublicRoom : listPublicRooms,
+   room: roomChat.name,
+   chatHistory : chatHistory,
+   showCreateRoom : createRoom
    }
   res.render('index', content);
 });

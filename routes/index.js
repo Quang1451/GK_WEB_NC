@@ -10,7 +10,8 @@ Account.find((err, accounts) => {
     name: 'admin',
     email: 'admin123@gmail.com',
     password: '123456',
-    avatar: 'avatar-5.png'
+    avatar: 'avatar-5.png',
+    role: 'admin'
   }).save();
 })
 
@@ -58,7 +59,8 @@ router.post('/register', function(req, res) {
         name: name,
         email: email,
         password: password,
-        avatar: avatar
+        avatar: avatar,
+        role: 'customer'
       }).save()
 
       /* Tạo các phòng chat private giữa account mới và các account cũ */

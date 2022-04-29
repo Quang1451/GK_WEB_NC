@@ -21,20 +21,38 @@
         <div class="col-left">
             <div class="col-content">
                 <div class="messages">
-                    {{#each friends}}
-                    <li>
-                        <div onclick="location.href = '/chat/r/{{id}}';">
-                            <div class="avatar">
-                                <div class="avatar-image">
-                                    <div id="{{account.email}}" class="status offline"></div><img
-                                        src="/img/{{account.avatar}}">
+                    <h3>Private Chat</h3>
+                    <div id="private-room" class="child-list1">
+                        {{#each friends}}
+                        <li>
+                            <div onclick="location.href = '/chat/r/{{id}}';">
+                                <div class="avatar">
+                                    <div class="avatar-image">
+                                        <div id="{{account.email}}" class="status offline"></div><img
+                                            src="/img/{{account.avatar}}">
+                                    </div>
                                 </div>
+                                <h3>{{account.name}}</h3>
                             </div>
-                            <h3>{{account.name}}</h3>
-                            <p>{{id}}</p>
-                        </div>
-                    </li>
-                    {{/each}}
+                        </li>
+                        {{/each}}
+                    </div>
+                    <h3>Public Chat</h3>
+                    <div id="public-room" class="child-list2">
+                        {{#each listPublicRoom}}
+                        <li>
+                            <div onclick="location.href = '/chat/r/{{id}}';">
+                                <div class="avatar">
+                                    <div class="avatar-image">
+                                        <img src="/img/{{avatar}}">
+                                    </div>
+                                </div>
+                                <h3>{{name}}</h3>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -56,7 +74,7 @@
             </div>
             <div class="col-foot">
                 <div class="compose">
-                    <p><textarea class="textarea" id="chatMessage"></textarea></p>
+                    <textarea class="textarea" id="chatMessage"></textarea>
                     <div class="compose-dock">
                         <div class="dock"><img src="/img/picture.svg"><img src="/img/icon.svg"><img src="/img/send.svg">
                         </div>
@@ -74,22 +92,22 @@
                         </div>
                         <h3 id="user" data-email="{{account.email}}">{{account.name}}</h3>
                         {{/if}}
-
                     </div>
                 </div>
-
+                {{#if showCreateRoom}}
                 <button id="btnForm" class="open-button" onclick="openForm()">Create Room</button>
 
                 <div class="form-popup" id="myForm">
                     <form action="#" class="form-container">
                         <h1>Create Room</h1>
-                        
+
                         <input id="nameRoom" type="text" placeholder="Enter Name Room" name="nameRoom" required>
 
                         <button type="submit" class="btn">Create</button>
                         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                     </form>
                 </div>
+                {{/if}}
             </div>
         </div>
     </main>

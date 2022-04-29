@@ -87,7 +87,18 @@ $(document).ready(() => {
 
     /* Hiện thi phòng mới vào danh sách */
     socket.on('newRoom', data => {
-        console.log(data)
+        $('#public-room').append(`
+                        <li>
+                            <div onclick="location.href = '/chat/r/${data.id}';">
+                                <div class="avatar">
+                                    <div class="avatar-image">
+                                        <img src="/img/${data.avatar}">
+                                    </div>
+                                </div>
+                                <h3>${data.name}</h3>
+                            </div>
+                        </li>
+                        `)
     })
 })
 
