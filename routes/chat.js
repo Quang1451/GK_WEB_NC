@@ -24,7 +24,7 @@ router.get('/r/:id',async function(req, res) {
   var css = ['/css/chat.css','/css/normalize.css']
 
   /* Lấy danh sách các phòng chat */
-  var listRooms = await getRoom.listRoom(accountInfo.email)
+  var listRooms = await getRoom.listPrivateRoom(accountInfo.email)
   /* Lấy thông tin phòng chat */
   var roomChat = await getRoom.getRoomById(req.params.id, accountInfo.email)
   /* Lấy lịch sử chat */

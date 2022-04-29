@@ -6,6 +6,7 @@ var session = require('express-session')
 var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/chat');
+var apiRouter = require('./routes/api')
 var exphbs = require('express-handlebars');
 const async = require('hbs/lib/async');
 
@@ -46,6 +47,7 @@ app.use((req,res,next) => {
 
 app.use('/', indexRouter);
 app.use('/chat', usersRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

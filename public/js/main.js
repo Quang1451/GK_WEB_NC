@@ -5,7 +5,7 @@ $(document).ready(() => {
         username: $('#user').html(),
         email: $('#user').data('email')
     }
-    
+
     /* Tự động đến đoạn chat mới nhất */
     $('.message').scrollTop($('.message').prop("scrollHeight"));
 
@@ -65,30 +65,30 @@ $(document).ready(() => {
         $('.message').scrollTop($('.message').prop("scrollHeight"));
     })
 
-    var modal = document.getElementById("myModal");
+    /* Hiển thị thông báo tạo phòng thành công hay không */
+    $('#myForm').submit(e => {
+        e.preventDefault()
+        var data = {name: $('#nameRoom').val()}
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+        fetch('/api/createRoom', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {'Content-Type': 'application/json'}
+        }).then(res => res.json())
+        .then(data => {
+            console.log(data.message)
+            $('#nameRoom').val('')
+            closeForm()
+        })
+        .catch(e => {
+            console.log(e)
+        })
+    })
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+    /* Hiện thi phòng mới vào danh sách */
+    socket.on('newRoom', data => {
+        console.log(data)
+    })
 })
 
 function sendMessage(message, account) {
@@ -98,4 +98,14 @@ function sendMessage(message, account) {
     }
     $('#chatMessage').val('')
     socket.emit('chat', (data))
+}
+
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+    document.getElementById("btnForm").style.display = "none";
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+    document.getElementById("btnForm").style.display = "block";
 }

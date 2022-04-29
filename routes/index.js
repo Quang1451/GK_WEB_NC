@@ -86,4 +86,11 @@ router.post('/register', function(req, res) {
   })
   
 });
+
+router.get('/logout', (req,res) => {
+  if(!req.session.account)
+    return res.redirect(303,'/login')
+  req.session.destroy()
+  res.redirect(303,'/login')
+})
 module.exports = router;
