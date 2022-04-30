@@ -40,8 +40,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use((req,res,next) => {
+  res.locals.message = req.session.message
   res.locals.falseRegister = req.session.falseRegister
   delete req.session.falseRegister
+  delete req.session.message
   next()
 })
 

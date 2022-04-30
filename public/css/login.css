@@ -1,10 +1,11 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 /* Login page */
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 .login-page {
     width: 360px;
     padding: 8% 0 0;
@@ -150,31 +151,57 @@ body {
 /* Chat page */
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 .chat {
-  border: solid gray 1px;
-  border-radius: 20px;
+    border: solid gray 1px;
+    border-radius: 20px;
 }
 
 .chat-header {
-  padding: 15px;
-  background-color: rgb(72, 72, 184);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+    padding: 15px;
+    background-color: rgb(72, 72, 184);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 
 }
 
 .chat-sidebar {
-  color: white;
-  background-color: rgb(119, 119, 200);
-  border-right: solid gray 1px;
-  padding: 10px;
+    color: white;
+    background-color: rgb(119, 119, 200);
+    border-right: solid gray 1px;
+    padding: 10px;
 }
 
 .chat-form-container {
-  background-color: rgb(72, 72, 184);
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
+    background-color: rgb(72, 72, 184);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+/* The alert message box */
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    text-align: left;
+    color: white;
+    margin-top: 10px;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
 }

@@ -10,7 +10,7 @@ router.post('/createRoom', (req,res) => {
     var newRoom = new Room({
         name: name,
         kind: 'public',
-        avatar: 'room.jpg'
+        avatar: 'meeting-room.webp'
     })
     newRoom.save()
     var roomInfo = {id: newRoom._id, name: name, avatar: newRoom.avatar}

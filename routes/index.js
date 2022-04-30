@@ -7,7 +7,7 @@ Account.find((err, accounts) => {
   if(accounts.length) return
 
   new Account({
-    name: 'admin',
+    name: 'Admin',
     email: 'admin123@gmail.com',
     password: '123456',
     avatar: 'avatar-5.png',
